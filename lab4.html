@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Lab 4 Store</title>>
+</head>
+<body>
+    <h1>Lab 4 Albert's Store</h1>
+    <div id="info"></div>
+
+    <script>
+        alert("Welcome to Albert's Store!");
+
+        let name = prompt("Enter your name here:");
+        let item = prompt("Which item do you want to buy?");
+        let amount = prompt("How many would you like to buy?");
+
+        let now = new Date();
+        let hour = now.getHours();
+        let greeting;
+        if (hour < 12) {
+            greeting = "Good Morning, Welcome to Albert's Store";
+        } else if (hour < 18) {
+            greeting = "Good Afternoon, Welcome to Albert's Store";
+        } else {
+            greeting = "Good Evening, Welcome to Albert's Store";
+        }
+
+        let delivery = new Date();
+        delivery.setDate(delivery.getDate() + 7);
+
+        document.getElementById("info").innerHTML = 
+            `<h2>${greeting}, ${name}!</h2>
+            <p> You have ordered ${amount} ${item}(s).</p>
+            <p>Your order will be delivered on ${delivery.toDateString()}.</p>`;
+    </script>
+</body>
+</html>
