@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Registration</title>
+</head>
+<body>
+    <h1>Albert's Coffee Shop Registration</h1>
+    <input id="firstName" placeholder="First Name" type="text">
+    <input id="lastName" placeholder="Last Name" type="text">
+    <input id="email" placeholder="Email" type="email">
+    <input id="password" placeholder="Password" type="password">
+    <input id="birthday" placeholder="Birthday" type="date">
+    <button onclick="registerUser()">Complete Registration</button>
+
+    <div id="result"></div>
+
+    <script>
+        function registerUser() {
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var birthday = document.getElementById("birthday").value;
+
+            if (firstName==""|| lastName=="" || email=="" || password=="" || birthday=="") {
+                document.getElementById("result").innerHTML = "Please fill in all the required information.";
+                return;
+            }
+
+            if (password.indexOf("!") == -1 && password.indexOf("?") == -1) {
+                document.getElementById("result").innerHTML = "Password must have a ! or ?.";
+                return;
+            }
+
+            var stars="";
+            for (var i=0; i<password.length; i++) {stars+="*";}
+
+            document.getElementById("result").innerHTML = 
+                "Registration Complete!<br>" +
+                "First Name: "+firstName+"<br>" +
+                "Last Name: "+lastName+"<br>" +
+                "Email: "+email+"<br>" +
+                "Password: "+stars+"<br>" +
+                "Birthday: "+birthday+"<br>";
+        }
+    </script>
+
+
+</body>
+</html>
