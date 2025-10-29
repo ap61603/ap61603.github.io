@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1>Cat Facts from REST API</h1>
+    <button id="loadButton">Load Cat Facts</button>
+    <br><br>
+
+    <img id="catImage" src="https://placekitten.com/200/200" alt="Cat Picture" width="200">
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>factId</th>
+                <th>fact</th>
+            </tr>
+        </thead>
+        <tbody id="factsTable"></tbody>
+    </table>
+
+    <script>
+        async function getCatFacts() {
+            const url = 'https://brianobruno.github.io/cats.json';
+            const options = { method: 'GET' };
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                const sortedFacts = result.facts.sort((a, b) => a.factId - b.factId);
+                const table = document.getElementById('factsTable');
+                table.innerHTML = '';
+                for (const fact of sortedFacts) {
+                    const row = `<tr><td>${fact.factId}</td><td>${fact.text}</td></tr>`;
+                    table.innerHTML += row;
+                }
+                document.getElementById('catImage').src = result.catPhoto;
+            } catch (error) {
+                console.log('Error:', error);
+            }
+        }
+
+        document.getElementById('loadButton').addEventListener('click', getCatFacts);
+    </script>
+</body>
+</html>
